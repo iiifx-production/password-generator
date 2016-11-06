@@ -51,12 +51,11 @@ class Symbols
      */
     protected function setPriority ( $priority )
     {
-        $priority = (int) $priority;
-        if ( $priority > 0 && $priority <= 100 ) {
+        if ( is_numeric( $priority ) && $priority > 0 && $priority <= 100 ) {
             $this->priority = $priority;
             return true;
         }
-        throw new InvalidArgumentException( 'Priority must be in the range from 1 to 100' );
+        throw new InvalidArgumentException( 'Priority must be interger and in the range from 1 to 100' );
     }
 
     /**

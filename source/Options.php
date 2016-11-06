@@ -2,6 +2,8 @@
 
 namespace iiifx\PasswordGenerator;
 
+use InvalidArgumentException;
+
 class Options
 {
     /**
@@ -53,22 +55,10 @@ class Options
     /**
      * @return Symbols[]
      */
-    protected function cloneSymbolsList ()
-    {
-        $symbolsList = [];
-        foreach ( $this->getSymbolsList() as $symbols ) {
-            $symbolsList[] = clone $symbols;
-        }
-        return $symbolsList;
-    }
-
-    /**
-     * @return Symbols[]
-     */
     public function createHitRateMap ()
     {
         $hitRateMap = [];
-        $symbolsList = $this->cloneSymbolsList();
+        $symbolsList = $this->getSymbolsList();
         $totalCount = count( $symbolsList );
         foreach ( $this->getSymbolsList() as $symbols ) {
             $hitRate = ( $symbols->getPriority() / $totalCount ) * 100;
