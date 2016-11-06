@@ -34,7 +34,7 @@ echo $generator->generate(); # 35187
 
 Более сложные пароли: 8 знаков, цифры и буквы в нижнем регистре
 ``` php
-$length = new Length( 8 );
+$length = new Length( 8 ); # 8 знаков
 $symbols = [
     new Symbols( 'abcdefghijklmnopqrstuvwxyz', 100 ), # Приоритет 100
     new Symbols( '1234567890', 50 ), # Приоритет 50
@@ -52,16 +52,16 @@ echo $generator->generate(); # v94v1c43
 $length = new Length( 12, 16 ); # 12-16 знаков
 $symbols = [
     new Symbols( 'abcdefghijklmnopqrstuvwxyz', 100 ), # Приоритет 100
-    new Symbols( 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 80 ), # Приоритет 80
-    new Symbols( '1234567890', 80 ), # Приоритет 80
-    new Symbols( '`~!@#$%^&\'";*(){}<>[]_+-|/\\?.,:', 10 ), # Приоритет 10
+    new Symbols( 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 50 ), # Приоритет 50
+    new Symbols( '1234567890', 50 ), # Приоритет 50
+    new Symbols( '!@#$%?&:*+-.', 30 ), # Приоритет 30
 ];
 $options = new Options( $length, $symbols );
 $generator = new Generator( $options );
 
-echo $generator->generate(); # 3J#Ie&]qBm8Uah
-echo $generator->generate(); # rUchvr<a8QGo
-echo $generator->generate(); # c8s9E2sSmYB&X
+echo $generator->generate(); # 30waTt5gEsdC#h75
+echo $generator->generate(); # fm9?jqOtmhm0k
+echo $generator->generate(); # sMni8rP!9stTvi2
 ```
 
 ## Тесты
