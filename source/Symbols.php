@@ -51,7 +51,7 @@ class Symbols
      */
     protected function setPriority ( $priority )
     {
-        if ( is_numeric( $priority ) && $priority > 0 && $priority <= 100 ) {
+        if ( is_int( $priority ) && $priority > 0 && $priority <= 100 ) {
             $this->priority = $priority;
             return true;
         }
