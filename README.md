@@ -8,7 +8,7 @@
 Используя Composer:
 
 ``` bash
-$ composer require "iiifx-production/password-generator:*"
+$ composer require "iiifx-production/password-generator:0.*"
 ```
 
 ## Использование
