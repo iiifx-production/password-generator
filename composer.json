@@ -1,16 +1,16 @@
 {
-    "name": "@author/@package",
+    "name": "iiifx-production/password-generator",
     "type": "extension",
     "description": "...",
     "keywords": [
         "..."
     ],
-    "homepage": "https://github.com/@author/@package",
+    "homepage": "https://github.com/iiifx-production/password-generator",
     "license": "MIT License",
     "authors": [
         {
-            "name": "...",
-            "email": "..."
+            "name": "Vitaliy IIIFX Khomenko",
+            "email": "iiifx@yandex.com"
         }
     ],
     "require": {
@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "\\": "source/"
+            "iiifx\\PasswordGenerator\\": "source/"
         }
     },
     "scripts": {
