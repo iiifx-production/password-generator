@@ -1,9 +1,13 @@
 {
     "name": "iiifx-production/password-generator",
     "type": "extension",
-    "description": "...",
+    "description": "Simple password generation package",
     "keywords": [
-        "..."
+        "password generator",
+        "password",
+        "passwords",
+        "generator",
+        "php"
     ],
     "homepage": "https://github.com/iiifx-production/password-generator",
     "license": "MIT License",
