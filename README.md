@@ -13,7 +13,7 @@ $ composer require "iiifx-production/password-generator:*"
 
 ## Использование
 
-Создание простых, коротких паролей: 5 знков, только цифры
+Создание простых, коротких паролей: 5 знаков, только цифры
 ``` php
 use iiifx\PasswordGenerator\Length;
 use iiifx\PasswordGenerator\Options;
@@ -66,7 +66,7 @@ echo $generator->generate(); # c8s9E2sSmYB&X
 
 ## Тесты
 
-[![Build Status][ico-travis]][link-travis]
+[![Build Status][ico-travis]][link-travis] [![Code Coverage][ico-codecoverage]][link-scrutinizer]
 
 ## Лицензия
 
