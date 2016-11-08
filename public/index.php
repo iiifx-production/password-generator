@@ -12,12 +12,20 @@ echo '<pre>';
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$length = new Length( 8 ); # 8 знаков
+$length = new Length( 10, 16 ); # 8 знаков
 $symbols = [
     new Symbols( 'abcdefghijklmnopqrstuvwxyz', 100 ), # Приоритет 100
+    new Symbols( 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 50 ), # Приоритет 50
     new Symbols( '1234567890', 50 ), # Приоритет 50
+    new Symbols( '!@#$%?&:*+-.', 30 ), # Приоритет 30
 ];
 $options = new Options( $length, $symbols );
+
+$generator = new Generator( $options );
+echo $generator->generate() . PHP_EOL; # a844aotw
+echo $generator->generate() . PHP_EOL; # hmxqbug4
+echo $generator->generate() . PHP_EOL; # v94v1c43
+echo PHP_EOL;
 
 if ( MethodMT::isAvailable() ) {
     echo MethodMT::class . PHP_EOL;
