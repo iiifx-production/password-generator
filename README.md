@@ -72,6 +72,13 @@ echo $generator->generate(); # sMni8rP!9stTvi2
 
 [![Software License][ico-license]](LICENSE.md)
 
+## Запланировано
+* Использовать криптографически безопасные генераторы случаных чисел
+    - Для PHP7 использовать random_int()
+    - Для PHP5 использовать openssl_random_pseudo_bytes()
+    - Использовать сторонние решения
+* Реализовать формирование пароля по шаблону
+
 
 [ico-version]: https://img.shields.io/packagist/v/iiifx-production/password-generator.svg
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg
