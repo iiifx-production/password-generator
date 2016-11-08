@@ -2,6 +2,7 @@
 
 namespace iiifx\PasswordGenerator;
 
+use iiifx\PasswordGenerator\Method\MethodInterface;
 use InvalidArgumentException;
 
 class Symbols
@@ -67,12 +68,18 @@ class Symbols
     }
 
     /**
+     * @param MethodInterface $method
+     *
      * @return string
      */
-    public function getRandomSymbol ()
+    public function getRandomSymbol ( MethodInterface $method = null )
     {
         $length = strlen( $this->symbols );
-        $position = mt_rand( 0, $length - 1 );
+        if ( $method ) {
+            $position = $method->getRandomInt( $length - 1 );
+        } else {
+            $position = mt_rand( 0, $length - 1 );
+        }
         return $this->symbols[ $position ];
     }
 }

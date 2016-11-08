@@ -50,7 +50,7 @@ class Generator
         for ( $i = 0; $i < $length; $i++ ) {
             $position = $this->getMethod()->getRandomInt( $limit );
             $symbols = $map[ $position ];
-            $password .= $symbols->getRandomSymbol();
+            $password .= $symbols->getRandomSymbol( $this->getMethod() );
         }
         return $password;
     }
