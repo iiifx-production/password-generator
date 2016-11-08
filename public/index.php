@@ -18,28 +18,30 @@ $symbols = [
     new Symbols( '1234567890', 50 ), # Приоритет 50
 ];
 $options = new Options( $length, $symbols );
-$generator = new Generator( $options, new MethodMT() );
 
-echo $generator->generate() . PHP_EOL; # a844aotw
-echo $generator->generate() . PHP_EOL; # hmxqbug4
-echo $generator->generate() . PHP_EOL; # v94v1c43
-echo PHP_EOL;
+if ( MethodMT::isAvailable() ) {
+    echo MethodMT::class . PHP_EOL;
+    $generator = new Generator( $options, new MethodMT() );
+    echo $generator->generate() . PHP_EOL; # a844aotw
+    echo $generator->generate() . PHP_EOL; # hmxqbug4
+    echo $generator->generate() . PHP_EOL; # v94v1c43
+    echo PHP_EOL;
+}
 
-$generator = new Generator( $options, new MethodRandomInt() );
+if ( MethodRandomInt::isAvailable() ) {
+    echo MethodRandomInt::class . PHP_EOL;
+    $generator = new Generator( $options, new MethodRandomInt() );
+    echo $generator->generate() . PHP_EOL; # a844aotw
+    echo $generator->generate() . PHP_EOL; # hmxqbug4
+    echo $generator->generate() . PHP_EOL; # v94v1c43
+    echo PHP_EOL;
+}
 
-echo $generator->generate() . PHP_EOL; # a844aotw
-echo $generator->generate() . PHP_EOL; # hmxqbug4
-echo $generator->generate() . PHP_EOL; # v94v1c43
-echo PHP_EOL;
-
-$generator = new Generator( $options, new MethodOpenSSL() );
-
-echo $generator->generate() . PHP_EOL; # a844aotw
-echo $generator->generate() . PHP_EOL; # hmxqbug4
-echo $generator->generate() . PHP_EOL; # v94v1c43
-echo PHP_EOL;
-
-var_export( MethodMT::isAvailable() );
-var_export( MethodRandomInt::isAvailable() );
-var_export( MethodOpenSSL::isAvailable() );
-
+if ( MethodOpenSSL::isAvailable() ) {
+    echo MethodOpenSSL::class . PHP_EOL;
+    $generator = new Generator( $options, new MethodOpenSSL() );
+    echo $generator->generate() . PHP_EOL; # a844aotw
+    echo $generator->generate() . PHP_EOL; # hmxqbug4
+    echo $generator->generate() . PHP_EOL; # v94v1c43
+    echo PHP_EOL;
+}
