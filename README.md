@@ -1,5 +1,5 @@
 # Password Generator
-Простая библиотека для генерации паролей
+Простая библиотека для генерации паролей c возможностью использования криптографически безопасных алгоритмов
 
 [![Latest Version on Packagist][ico-version]][link-packagist] [![Build Status][ico-travis]][link-travis] [![Code Quality][ico-scrutinizer]][link-scrutinizer] [![Code Coverage][ico-codecoverage]][link-scrutinizer] [![Software License][ico-license]](LICENSE.md) [![Total Downloads][ico-downloads]][link-downloads]
 
@@ -32,8 +32,10 @@ echo $generator->generate(); # 62802
 echo $generator->generate(); # 35187
 ```
 
-Сложные пароли: 12 знаков, цифры, буквы и спец. знаки
+Сложные, безопасные пароли: от 10 до 16 знаков, цифры, буквы и спец. знаки
 ``` php
+use iiifx\PasswordGenerator\Method\MethodOpenSSL;
+
 $length = new Length( 10, 16 ); # 10-16 знаков
 $symbols = [
     new Symbols( 'abcdefghijklmnopqrstuvwxyz', 100 ), # Приоритет 100
@@ -42,7 +44,8 @@ $symbols = [
     new Symbols( '!@#$%?&:*+-.', 30 ), # Приоритет 30
 ];
 $options = new Options( $length, $symbols );
-$generator = new Generator( $options );
+$method = new MethodOpenSSL();
+$generator = new Generator( $options, $method );
 
 echo $generator->generate(); # Xn64h1:wgDk@@eh
 echo $generator->generate(); # lqF&X4ywaAo
@@ -72,6 +75,17 @@ MethodRandomInt::isAvailable(); # false, метод недоступен для 
 MethodOpenSSL::isAvailable(); # true, расширение OpenSSL подключено
 ```
 
+## Другие примеры
+
+Имитация хэшей
+``` php
+$generator = new Generator( new Options(
+    new Length( 32 ),
+    [ new Symbols( '0123456789abcdef' ) ]
+) );
+echo $generator->generate(); # 3a971aefab2b86468d1de895110b0e39
+```
+
 ## Тесты
 
 [![Build Status][ico-travis]][link-travis] [![Code Coverage][ico-codecoverage]][link-scrutinizer]
@@ -82,10 +96,11 @@ MethodOpenSSL::isAvailable(); # true, расширение OpenSSL подклю�
 
 ## Запланировано
 * Использовать криптографически безопасные генераторы случаных чисел
-    - Для PHP7 использовать random_int()
-    - Для PHP5 использовать openssl_random_pseudo_bytes()
+    - ~~Для PHP7 использовать random_int()~~
+    - ~~Для PHP5 использовать openssl_random_pseudo_bytes()~~
     - Использовать сторонние решения
 * Реализовать формирование пароля по шаблону
+* Реализовать быстрое создание через Generator::create( ... )
 
 
 [ico-version]: https://img.shields.io/packagist/v/iiifx-production/password-generator.svg
