@@ -2,6 +2,9 @@
 
 namespace iiifx\PasswordGenerator;
 
+use iiifx\PasswordGenerator\Method\MethodMT;
+use iiifx\PasswordGenerator\Method\MethodInterface;
+
 class Generator
 {
     /**
@@ -10,11 +13,29 @@ class Generator
     protected $options;
 
     /**
-     * @param Options $options
+     * @var MethodInterface
      */
-    public function __construct ( Options $options )
+    protected $method;
+
+    /**
+     * @param Options         $options
+     * @param MethodInterface $method
+     */
+    public function __construct ( Options $options, MethodInterface $method = null )
     {
         $this->options = $options;
+        $this->method = $method;
+    }
+
+    /**
+     * @return MethodInterface
+     */
+    public function getMethod ()
+    {
+        if ( !$this->method instanceof MethodInterface ) {
+            $this->method = new MethodMT();
+        }
+        return $this->method;
     }
 
     /**
@@ -23,13 +44,12 @@ class Generator
     public function generate ()
     {
         $password = '';
-        $hitRates = $this->options->createHitRateMap();
-        $arrayLimit = count( $hitRates ) - 1;
+        $map = $this->options->createHitRateMap();
+        $limit = count( $map ) - 1;
         $length = $this->options->createLength();
-        for ( $counter = 0; $counter < $length; $counter++ ) {
-            $position = mt_rand( 0, $arrayLimit );
-            shuffle( $hitRates );
-            $symbols = $hitRates[ $position ];
+        for ( $i = 0; $i < $length; $i++ ) {
+            $position = $this->getMethod()->getRandomInt( $limit );
+            $symbols = $map[ $position ];
             $password .= $symbols->getRandomSymbol();
         }
         return $password;

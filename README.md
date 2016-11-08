@@ -32,24 +32,9 @@ echo $generator->generate(); # 62802
 echo $generator->generate(); # 35187
 ```
 
-Более сложные пароли: 8 знаков, цифры и буквы в нижнем регистре
+Сложные пароли: 12 знаков, цифры, буквы и спец. знаки
 ``` php
-$length = new Length( 8 ); # 8 знаков
-$symbols = [
-    new Symbols( 'abcdefghijklmnopqrstuvwxyz', 100 ), # Приоритет 100
-    new Symbols( '1234567890', 50 ), # Приоритет 50
-];
-$options = new Options( $length, $symbols );
-$generator = new Generator( $options );
-
-echo $generator->generate(); # a844aotw
-echo $generator->generate(); # hmxqbug4
-echo $generator->generate(); # v94v1c43
-```
-
-Очень сложные пароли: от 12 до 16 знаков, цифры, буквы и спец.знаки
-``` php
-$length = new Length( 12, 16 ); # 12-16 знаков
+$length = new Length( 10, 16 ); # 10-16 знаков
 $symbols = [
     new Symbols( 'abcdefghijklmnopqrstuvwxyz', 100 ), # Приоритет 100
     new Symbols( 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 50 ), # Приоритет 50
@@ -59,9 +44,32 @@ $symbols = [
 $options = new Options( $length, $symbols );
 $generator = new Generator( $options );
 
-echo $generator->generate(); # 30waTt5gEsdC#h75
-echo $generator->generate(); # fm9?jqOtmhm0k
-echo $generator->generate(); # sMni8rP!9stTvi2
+echo $generator->generate(); # Xn64h1:wgDk@@eh
+echo $generator->generate(); # lqF&X4ywaAo
+echo $generator->generate(); # E8Yk60*qavzVr
+```
+
+Использование криптографически безопасных методов генерации
+``` php
+use iiifx\PasswordGenerator\Method\MethodMT;
+use iiifx\PasswordGenerator\Method\MethodOpenSSL;
+use iiifx\PasswordGenerator\Method\MethodRandomInt;
+
+# По умолчанию используется базовый небезопасный алгоритм - MT
+$generator = new Generator( $options ); 
+# Этот пример аналогичен предыдущему
+$generator = new Generator( $options, new MethodMT() ); 
+
+# Для PHP7 возможно использовать безопасный метод random_int()
+$generator = new Generator( $options, new MethodRandomInt() );
+
+# При наличии расширения возможно использовать безопасный метод OpenSSL
+$generator = new Generator( $options, new MethodOpenSSL() );
+
+# Любой из методов можно проверить на доступность
+MethodMT::isAvailable(); # true, доступен всегда
+MethodRandomInt::isAvailable(); # false, метод недоступен для PHP5
+MethodOpenSSL::isAvailable(); # true, расширение OpenSSL подключено
 ```
 
 ## Тесты
