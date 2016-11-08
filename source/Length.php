@@ -9,53 +9,53 @@ class Length
     /**
      * @var int
      */
-    protected $minimum;
+    protected $min;
 
     /**
      * @var int
      */
-    protected $maximum;
+    protected $max;
 
     /**
-     * @param int      $minimum
-     * @param int|null $maximum
+     * @param int      $min
+     * @param int|null $max
      */
-    public function __construct ( $minimum = 8, $maximum = null )
+    public function __construct ( $min = 8, $max = null )
     {
-        $this->setMinimum( $minimum );
-        $this->setMaximum( $maximum === null ? $minimum : $maximum );
+        $this->setMin( $min );
+        $this->setMax( $max === null ? $min : $max );
     }
 
     /**
-     * @param int $minimum
+     * @param int $min
      *
      * @return bool
      *
      * @throws InvalidArgumentException
      */
-    protected function setMinimum ( $minimum )
+    protected function setMin ( $min )
     {
-        if ( $minimum > 0 && $minimum <= 100 ) {
-            $this->minimum = (int) $minimum;
+        if ( $min > 0 && $min <= 100 ) {
+            $this->min = (int) $min;
             return true;
         }
-        throw new InvalidArgumentException( 'The minimum length should be from 1 to 100' );
+        throw new InvalidArgumentException( 'The min length should be from 1 to 100' );
     }
 
     /**
-     * @param int $maximum
+     * @param int $max
      *
      * @return bool
      *
      * @throws InvalidArgumentException
      */
-    protected function setMaximum ( $maximum )
+    protected function setMax ( $max )
     {
-        if ( $maximum > 0 && $maximum <= 100 ) {
-            $this->maximum = (int) $maximum;
+        if ( $max > 0 && $max <= 100 ) {
+            $this->max = (int) $max;
             return true;
         }
-        throw new InvalidArgumentException( 'The maximum length should be from 1 to 100' );
+        throw new InvalidArgumentException( 'The max length should be from 1 to 100' );
     }
 
     /**
@@ -65,9 +65,9 @@ class Length
      */
     public function getLength ()
     {
-        if ( $this->minimum <= $this->maximum ) {
-            return mt_rand( $this->minimum, $this->maximum );
+        if ( $this->min <= $this->max ) {
+            return mt_rand( $this->min, $this->max );
         }
-        throw new InvalidArgumentException( 'The minimum length should be less than the maximum' );
+        throw new InvalidArgumentException( 'The min length should be less than the max' );
     }
 }
