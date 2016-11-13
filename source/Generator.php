@@ -5,7 +5,7 @@ namespace iiifx\PasswordGenerator;
 use iiifx\PasswordGenerator\Method\MethodMT;
 use iiifx\PasswordGenerator\Method\MethodInterface;
 
-class Generator
+class Generator implements GeneratorInterface
 {
     /**
      * @var Options
