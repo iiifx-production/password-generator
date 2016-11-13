@@ -1,7 +1,9 @@
 <?php
 
-namespace iiifx\PasswordGenerator;
+namespace iiifx\Password;
 
+use iiifx\Password\Length\Length;
+use iiifx\Password\Symbols\Symbols;
 use InvalidArgumentException;
 
 class Options

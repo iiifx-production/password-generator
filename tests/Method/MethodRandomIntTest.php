@@ -1,6 +1,6 @@
 <?php
 
-use iiifx\PasswordGenerator\Method\MethodRandomInt;
+use iiifx\Password\Method\RandomInt;
 
 class MethodRandomIntTest extends PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class MethodRandomIntTest extends PHPUnit_Framework_TestCase
     public function testIsAvailable ()
     {
         if ( $this->isActive() ) {
-            $this->assertTrue( MethodRandomInt::isAvailable() );
+            $this->assertTrue( RandomInt::isAvailable() );
         } else {
             $this->markTestSkipped( 'PHP7 required for test.' );
         }
@@ -21,7 +21,7 @@ class MethodRandomIntTest extends PHPUnit_Framework_TestCase
     public function testRandom ()
     {
         if ( $this->isActive() ) {
-            $method = new MethodRandomInt();
+            $method = new RandomInt();
             for ( $i = 1; $i < 1001; $i++ ) {
                 $int = $method->getRandomInt( $i );
                 $this->assertTrue( $int >= 0 && $int <= $i );

@@ -15,10 +15,10 @@ $ composer require "iiifx-production/password-generator:0.*"
 
 Создание простых, коротких паролей: 5 знаков, только цифры
 ``` php
-use iiifx\PasswordGenerator\Length;
-use iiifx\PasswordGenerator\Options;
-use iiifx\PasswordGenerator\Symbols;
-use iiifx\PasswordGenerator\Generator;
+use iiifx\Password\Length;
+use iiifx\Password\Options;
+use iiifx\Password\Symbols;
+use iiifx\Password\Generator;
 
 $length = new Length( 5 );
 $symbols = [
@@ -34,7 +34,7 @@ echo $generator->generate(); # 35187
 
 Сложные, безопасные пароли: от 10 до 16 знаков, цифры, буквы и спец. знаки
 ``` php
-use iiifx\PasswordGenerator\Method\MethodOpenSSL;
+use iiifx\Password\Method\OpenSSL;
 
 $length = new Length( 10, 16 ); # 10-16 знаков
 $symbols = [
@@ -44,7 +44,7 @@ $symbols = [
     new Symbols( '!@#$%?&:*+-.', 30 ), # Приоритет 30
 ];
 $options = new Options( $length, $symbols );
-$method = new MethodOpenSSL();
+$method = new OpenSSL();
 $generator = new Generator( $options, $method );
 
 echo $generator->generate(); # Xn64h1:wgDk@@eh
@@ -54,25 +54,25 @@ echo $generator->generate(); # E8Yk60*qavzVr
 
 Использование криптографически безопасных методов генерации
 ``` php
-use iiifx\PasswordGenerator\Method\MethodMT;
-use iiifx\PasswordGenerator\Method\MethodOpenSSL;
-use iiifx\PasswordGenerator\Method\MethodRandomInt;
+use iiifx\Password\Method\MTRand;
+use iiifx\Password\Method\OpenSSL;
+use iiifx\Password\Method\RandomInt;
 
 # По умолчанию используется базовый небезопасный алгоритм - MT
 $generator = new Generator( $options ); 
 # Этот пример аналогичен предыдущему
-$generator = new Generator( $options, new MethodMT() ); 
+$generator = new Generator( $options, new MTRand() ); 
 
 # Для PHP7 возможно использовать безопасный метод random_int()
-$generator = new Generator( $options, new MethodRandomInt() );
+$generator = new Generator( $options, new RandomInt() );
 
 # При наличии расширения возможно использовать безопасный метод OpenSSL
-$generator = new Generator( $options, new MethodOpenSSL() );
+$generator = new Generator( $options, new OpenSSL() );
 
 # Любой из методов можно проверить на доступность
-MethodMT::isAvailable(); # true, доступен всегда
-MethodRandomInt::isAvailable(); # false, метод недоступен для PHP5
-MethodOpenSSL::isAvailable(); # true, расширение OpenSSL подключено
+MTRand::isAvailable(); # true, доступен всегда
+RandomInt::isAvailable(); # false, метод недоступен для PHP5
+OpenSSL::isAvailable(); # true, расширение OpenSSL подключено
 ```
 
 ## Другие примеры

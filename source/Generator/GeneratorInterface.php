@@ -1,8 +1,9 @@
 <?php
 
-namespace iiifx\PasswordGenerator;
+namespace iiifx\Password\Generator;
 
-use iiifx\PasswordGenerator\Method\MethodInterface;
+use iiifx\Password\Method\MethodInterface;
+use iiifx\Password\Options;
 
 interface GeneratorInterface
 {

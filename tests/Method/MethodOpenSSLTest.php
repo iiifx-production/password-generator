@@ -1,6 +1,6 @@
 <?php
 
-use iiifx\PasswordGenerator\Method\MethodOpenSSL;
+use iiifx\Password\Method\OpenSSL;
 
 class MethodOpenSSLTest extends PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class MethodOpenSSLTest extends PHPUnit_Framework_TestCase
     public function testIsAvailable ()
     {
         if ( $this->isActive() ) {
-            $this->assertTrue( MethodOpenSSL::isAvailable() );
+            $this->assertTrue( OpenSSL::isAvailable() );
         } else {
             $this->markTestSkipped( 'OpenSSL required for test.' );
         }
@@ -21,7 +21,7 @@ class MethodOpenSSLTest extends PHPUnit_Framework_TestCase
     public function testRandom ()
     {
         if ( $this->isActive() ) {
-            $method = new MethodOpenSSL();
+            $method = new OpenSSL();
             for ( $i = 1; $i < 1001; $i++ ) {
                 $int = $method->getRandomInt( $i );
                 $this->assertTrue( $int >= 0 && $int <= $i );

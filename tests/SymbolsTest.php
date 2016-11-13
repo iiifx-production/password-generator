@@ -1,7 +1,7 @@
 <?php
 
-use iiifx\PasswordGenerator\Method\MethodMT;
-use iiifx\PasswordGenerator\Symbols;
+use iiifx\Password\Method\MTRand;
+use iiifx\Password\Symbols\Symbols;
 
 class SymbolsTest extends PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ class SymbolsTest extends PHPUnit_Framework_TestCase
     {
         $symbols = new Symbols( '1', 100 );
         $this->assertEquals( '1', $symbols->getRandomSymbol() );
-        $this->assertEquals( '1', $symbols->getRandomSymbol( new MethodMT() ) );
+        $this->assertEquals( '1', $symbols->getRandomSymbol( new MTRand() ) );
     }
 
     public function testPriority ()

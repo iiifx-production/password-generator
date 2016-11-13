@@ -1,10 +1,12 @@
 <?php
 
-namespace iiifx\PasswordGenerator;
+namespace iiifx\Password\Template;
 
+use iiifx\Password\Generator\Generator;
+use iiifx\Password\Generator\GeneratorInterface;
 use InvalidArgumentException;
 
-class Pattern
+class Template implements TemplateInterface
 {
     /**
      * @var string
@@ -17,8 +19,7 @@ class Pattern
     protected $generators = [];
 
     /**
-     * @param string               $pattern
-     * @param GeneratorInterface[] $generators
+     * @inheritdoc
      */
     public function __construct ( $pattern, array $generators )
     {
@@ -27,9 +28,7 @@ class Pattern
     }
 
     /**
-     * @param string $pattern
-     *
-     * @return $this
+     * @inheritdoc
      *
      * @throws InvalidArgumentException
      */
@@ -39,11 +38,11 @@ class Pattern
             $this->pattern = $pattern;
             return $this;
         }
-        throw new InvalidArgumentException( 'Pattern must be a string, and contain at least one character' );
+        throw new InvalidArgumentException( 'Template must be a string, and contain at least one character' );
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function getPattern ()
     {
@@ -51,9 +50,7 @@ class Pattern
     }
 
     /**
-     * @param GeneratorInterface[] $generators
-     *
-     * @return $this
+     * @inheritdoc
      */
     public function setGenerators ( array $generators )
     {
@@ -64,10 +61,7 @@ class Pattern
     }
 
     /**
-     * @param string             $name
-     * @param GeneratorInterface $generator
-     *
-     * @return $this
+     * @inheritdoc
      */
     public function addGenerator ( $name, GeneratorInterface $generator )
     {
@@ -76,7 +70,7 @@ class Pattern
     }
 
     /**
-     * @return GeneratorInterface[]
+     * @inheritdoc
      */
     public function getGenerators ()
     {
@@ -84,7 +78,7 @@ class Pattern
     }
 
     /**
-     * @return $this
+     * @inheritdoc
      */
     public function clearGenerators ()
     {
@@ -93,7 +87,7 @@ class Pattern
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function create ()
     {

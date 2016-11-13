@@ -1,6 +1,6 @@
 <?php
 
-use iiifx\PasswordGenerator\Length;
+use iiifx\Password\Length\Length;
 
 class LengthTest extends PHPUnit_Framework_TestCase
 {

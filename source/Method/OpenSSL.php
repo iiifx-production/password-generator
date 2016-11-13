@@ -1,8 +1,8 @@
 <?php
 
-namespace iiifx\PasswordGenerator\Method;
+namespace iiifx\Password\Method;
 
-class MethodOpenSSL implements MethodInterface
+class OpenSSL implements MethodInterface
 {
     /**
      * @inheritdoc

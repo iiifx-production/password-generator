@@ -1,8 +1,8 @@
 <?php
 
-use iiifx\PasswordGenerator\Length;
-use iiifx\PasswordGenerator\Options;
-use iiifx\PasswordGenerator\Symbols;
+use iiifx\Password\Length\Length;
+use iiifx\Password\Options;
+use iiifx\Password\Symbols\Symbols;
 
 class OptionsTest extends PHPUnit_Framework_TestCase
 {

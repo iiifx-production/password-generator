@@ -1,10 +1,10 @@
 <?php
 
-use iiifx\PasswordGenerator\Generator;
-use iiifx\PasswordGenerator\Length;
-use iiifx\PasswordGenerator\Method\MethodMT;
-use iiifx\PasswordGenerator\Options;
-use iiifx\PasswordGenerator\Symbols;
+use iiifx\Password\Generator\Generator;
+use iiifx\Password\Length\Length;
+use iiifx\Password\Method\MTRand;
+use iiifx\Password\Options;
+use iiifx\Password\Symbols\Symbols;
 
 class GeneratorTest extends PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class GeneratorTest extends PHPUnit_Framework_TestCase
         ];
         $options = new Options( $length, $symbols );
         new Generator( $options );
-        new Generator( $options, new MethodMT() );
+        new Generator( $options, new MTRand() );
     }
 
     public function testGenerate ()

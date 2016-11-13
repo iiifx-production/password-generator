@@ -1,11 +1,11 @@
 <?php
 
-namespace iiifx\PasswordGenerator;
+namespace iiifx\Password\Symbols;
 
-use iiifx\PasswordGenerator\Method\MethodInterface;
+use iiifx\Password\Method\MethodInterface;
 use InvalidArgumentException;
 
-class Symbols
+class Symbols implements SymbolsInterface
 {
     /**
      * @var string
@@ -18,8 +18,7 @@ class Symbols
     protected $priority;
 
     /**
-     * @param string $symbols
-     * @param int    $priority
+     * @inheritdoc
      */
     public function __construct ( $symbols, $priority = 100 )
     {
@@ -28,13 +27,11 @@ class Symbols
     }
 
     /**
-     * @param $symbols
-     *
-     * @return bool
+     * @inheritdoc
      *
      * @throws InvalidArgumentException
      */
-    protected function setSymbols ( $symbols )
+    public function setSymbols ( $symbols )
     {
         if ( is_string( $symbols ) && strlen( $symbols ) > 0 ) {
             $this->symbols = $symbols;
@@ -44,13 +41,11 @@ class Symbols
     }
 
     /**
-     * @param int $priority
-     *
-     * @return bool
+     * @inheritdoc
      *
      * @throws InvalidArgumentException
      */
-    protected function setPriority ( $priority )
+    public function setPriority ( $priority )
     {
         if ( is_int( $priority ) && $priority > 0 && $priority <= 100 ) {
             $this->priority = $priority;
@@ -60,7 +55,7 @@ class Symbols
     }
 
     /**
-     * @return int
+     * @inheritdoc
      */
     public function getPriority ()
     {
@@ -68,9 +63,7 @@ class Symbols
     }
 
     /**
-     * @param MethodInterface $method
-     *
-     * @return string
+     * @inheritdoc
      */
     public function getRandomSymbol ( MethodInterface $method = null )
     {

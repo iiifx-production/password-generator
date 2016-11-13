@@ -1,10 +1,10 @@
 <?php
 
-namespace iiifx\PasswordGenerator;
+namespace iiifx\Password\Length;
 
 use InvalidArgumentException;
 
-class Length
+class Length implements LengthInterface
 {
     /**
      * @var int
@@ -17,8 +17,7 @@ class Length
     protected $max;
 
     /**
-     * @param int      $min
-     * @param int|null $max
+     * @inheritdoc
      */
     public function __construct ( $min = 8, $max = null )
     {
@@ -27,39 +26,35 @@ class Length
     }
 
     /**
-     * @param int $min
-     *
-     * @return bool
+     * @inheritdoc
      *
      * @throws InvalidArgumentException
      */
-    protected function setMin ( $min )
+    public function setMin ( $min )
     {
         if ( $min > 0 && $min <= 100 ) {
             $this->min = (int) $min;
-            return true;
+            return $this;
         }
         throw new InvalidArgumentException( 'The min length should be from 1 to 100' );
     }
 
     /**
-     * @param int $max
-     *
-     * @return bool
+     * @inheritdoc
      *
      * @throws InvalidArgumentException
      */
-    protected function setMax ( $max )
+    public function setMax ( $max )
     {
         if ( $max > 0 && $max <= 100 ) {
             $this->max = (int) $max;
-            return true;
+            return $this;
         }
         throw new InvalidArgumentException( 'The max length should be from 1 to 100' );
     }
 
     /**
-     * @return int
+     * @inheritdoc
      *
      * @throws InvalidArgumentException
      */

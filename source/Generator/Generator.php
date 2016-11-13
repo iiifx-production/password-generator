@@ -1,9 +1,10 @@
 <?php
 
-namespace iiifx\PasswordGenerator;
+namespace iiifx\Password\Generator;
 
-use iiifx\PasswordGenerator\Method\MethodMT;
-use iiifx\PasswordGenerator\Method\MethodInterface;
+use iiifx\Password\Method\MTRand;
+use iiifx\Password\Method\MethodInterface;
+use iiifx\Password\Options;
 
 class Generator implements GeneratorInterface
 {
@@ -33,7 +34,7 @@ class Generator implements GeneratorInterface
     public function getMethod ()
     {
         if ( !$this->method instanceof MethodInterface ) {
-            $this->method = new MethodMT();
+            $this->method = new MTRand();
         }
         return $this->method;
     }

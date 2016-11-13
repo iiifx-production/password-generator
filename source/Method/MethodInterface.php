@@ -1,6 +1,6 @@
 <?php
 
-namespace iiifx\PasswordGenerator\Method;
+namespace iiifx\Password\Method;
 
 interface MethodInterface
 {

@@ -1,15 +1,15 @@
 <?php
 
-namespace iiifx\PasswordGenerator\Method;
+namespace iiifx\Password\Method;
 
-class MethodMT implements MethodInterface
+class RandomInt implements MethodInterface
 {
     /**
      * @inheritdoc
      */
     public static function isAvailable ()
     {
-        return function_exists( 'mt_rand' );
+        return function_exists( 'random_int' );
     }
 
     /**
@@ -17,6 +17,6 @@ class MethodMT implements MethodInterface
      */
     public function getRandomInt ( $limit )
     {
-        return mt_rand( 0, $limit );
+        return random_int( 0, $limit );
     }
 }
